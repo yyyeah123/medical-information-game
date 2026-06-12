@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>谣言诊疗室</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app">
+    <!-- 首页 -->
+    <section id="homeScreen" class="screen active">
+      <div class="hall-bg">
+        <div class="home-card">        
+          <h1>谣言诊疗室</h1>
+          <p class="slogan">识破虚假医疗信息，守护健康与真相。</p>
+          <button id="startBtn" class="primary-btn">开始接诊</button>
+          <p class="tip">你将扮演“医疗健康信息鉴查医师”，完成 10 位患者的信息诊断。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 答题页 -->
+    <section id="gameScreen" class="screen">
+      <header class="game-header">
+        <div>
+          <p class="small-label">当前科室</p>
+          <h2>医疗健康信息鉴查</h2>
+        </div>
+        <div class="progress-pill">
+          <span id="caseProgress">1/10</span>
+          <span id="scoreText">0 分</span>
+        </div>
+      </header>
+
+      <div class="clinic">
+        <section class="desk-area">
+          <div class="doctor-stand">
+            <img src="assets/characters/doctor.png" alt="信息鉴查医师" />
+          </div>
+
+          <div id="patient" class="patient patient-1">
+            <div class="patient-bubble" id="bubbleBtn">
+              <span id="bubbleText">医师，我最近在网上看到一条消息，您帮我看看靠谱吗？</span>
+            </div>
+            <img id="patientImage" src="assets/characters/patient-1.png" alt="就诊病人" />
+          </div>
+        </section>
+      </div>
+
+      <section id="questionCard" class="question-card hidden">
+        <div class="card-top">
+          <span id="sourceTag" class="source-tag">信息来源</span>
+          <span id="caseLabel" class="case-label">病例 01</span>
+        </div>
+        <h3 id="questionTitle"></h3>
+        <p id="questionSource" class="question-source"></p>
+        <p id="questionSummary" class="question-summary"></p>
+        <p class="question-hint">请判断这条医疗健康信息是真实信息还是虚假信息。</p>
+        <div class="choice-row">
+          <button id="trueBtn" class="judge-btn true-btn">✓ 真实</button>
+          <button id="falseBtn" class="judge-btn false-btn">× 虚假</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- 多选依据弹窗 -->
+    <div id="evidenceModal" class="modal hidden">
+      <div class="modal-card evidence-card">
+        <button class="close-btn" id="closeEvidenceBtn" aria-label="关闭">×</button>
+        <h3>该信息为假，请选出判断依据</h3>
+        </p>
+        <div id="evidenceOptions" class="checkbox-list"></div>
+        <p id="evidenceTip" class="evidence-tip"></p>
+        <button id="submitEvidenceBtn" class="primary-btn wide">提交依据</button>
+      </div>
+    </div>
+
+    <!-- 入职提示 -->
+    <div id="introModal" class="modal hidden">
+      <div class="modal-card intro-card">
+        <h3>欢迎入驻谣言诊疗室</h3>
+        <p>信息鉴查医师您好！网络上的医疗健康信息真假难辨，请用您的专业判断力为它们“把脉”。</p>
+        <button id="introStartBtn" class="primary-btn wide">开始第一位接诊</button>
+      </div>
+    </div>
+
+    <!-- 诊断书弹窗 -->
+    <div id="diagnosisModal" class="modal hidden">
+      <div class="diagnosis-paper">
+        <div class="paper-clip"></div>
+        <h3>诊断书</h3>
+        <div id="judgeFeedback" class="judge-feedback"></div>
+
+        <div class="diagnosis-section">
+          <h4>一、定性结果</h4>
+          <p id="diagnosisResult"></p>
+        </div>
+
+        <div id="symptomSection" class="diagnosis-section">
+          <h4>二、病症</h4>
+          <div id="symptoms" class="symptom-list"></div>
+        </div>
+
+        <div class="diagnosis-section">
+          <h4 id="analysisTitle">三、诊断依据</h4>
+          <p id="diagnosisAnalysis"></p>
+        </div>
+
+        <div class="diagnosis-section message-section">
+          <h4>医师寄语</h4>
+          <p id="doctorMessage"></p>
+        </div>
+
+        <button id="nextBtn" class="primary-btn wide">完成诊断</button>
+      </div>
+    </div>
+
+    <!-- 结果页 -->
+    <section id="resultScreen" class="screen">
+      <div class="result-room">
+        <div class="result-card">
+          <p class="result-kicker">诊疗总结报告</p>
+          <p class="honor-label">荣誉称号</p>
+          <h2 id="rankTitle">首席信息诊疗大师</h2>
+          <div class="score-big"><span id="finalScore">0</span><small>/100</small></div>
+
+          <div class="stats">
+            <div>
+              <strong id="correctCount">0</strong>
+              <span>正确诊数</span>
+            </div>
+            <div>
+              <strong id="accuracyText">0%</strong>
+              <span>正确率</span>
+            </div>
+          </div>
+
+          <p id="rankComment" class="rank-comment"></p>
+          <div class="result-actions">
+            <button id="restartBtn" class="primary-btn">重新接诊</button>
+            <button id="shareBtn" class="secondary-btn">复制成绩文案</button>
+          </div>
+          <p id="copyTip" class="copy-tip"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
